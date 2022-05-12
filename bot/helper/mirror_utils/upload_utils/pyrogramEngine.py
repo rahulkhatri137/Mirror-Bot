@@ -57,7 +57,7 @@ class TgUploader:
                 self.upload_file(up_path, file, dirpath)
                 if self.is_cancelled:
                     return
-                msgs_dict[file] = self.sent_msg.message_id
+                msgs_dict[file] = self.sent_msg.id
                 self.last_uploaded = 0
         if len(msgs_dict) <= self.corrupted:
             return self.__listener.onUploadError('Files Corrupted. Check logs')
@@ -87,7 +87,6 @@ class TgUploader:
                     self.sent_msg = self.sent_msg.reply_video(video=up_path,
                                                               quote=True,
                                                               caption=cap_mono,
-                                                              parse_mode="html",
                                                               duration=duration,
                                                               width=480,
                                                               height=320,
@@ -111,7 +110,6 @@ class TgUploader:
                     self.sent_msg = self.sent_msg.reply_audio(audio=up_path,
                                                               quote=True,
                                                               caption=cap_mono,
-                                                              parse_mode="html",
                                                               duration=duration,
                                                               performer=artist,
                                                               title=title,
@@ -127,7 +125,6 @@ class TgUploader:
                     self.sent_msg = self.sent_msg.reply_photo(photo=up_path,
                                                               quote=True,
                                                               caption=cap_mono,
-                                                              parse_mode="html",
                                                               disable_notification=True,
                                                               progress=self.upload_progress)
                     try:
@@ -146,7 +143,6 @@ class TgUploader:
                                                              quote=True,
                                                              thumb=thumb,
                                                              caption=cap_mono,
-                                                             parse_mode="html",
                                                              disable_notification=True,
                                                              progress=self.upload_progress)
                 try:
